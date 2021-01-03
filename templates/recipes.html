@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keto Recipes</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+
+    <h2>Im extending the base template</h2>
+
     {% for recipe in recipes %}
         {{ recipe.recipe_name }}<br>
         {{ recipe.category_name }}<br>
         {{ recipe.recipe_ingredients }}<br>
         {{ recipe.cooking_steps }}<br>
     {% endfor %}
-</body>
-</html>
+{% endblock %}
