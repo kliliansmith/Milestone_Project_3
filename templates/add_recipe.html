@@ -3,18 +3,22 @@
 
     <h3 class="teal-text text-darken-2 text-shadow center-align">Add Keto Items</h3>
 
-    <div class="row">
+    <div class="row card-panel grey lighten-4">
         <form class="col s12" method="POST" action="">
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-user-circle prefix teal-text text-darken-2"></i>
-                    <input id="icon_prefix" type="text" class="validate">
-                    <label for="icon_prefix">First Name</label>
+                    <i class="fas fa-pencil-alt prefix teal-text text-darken-2"></i>
+                    <input id="item_name" minlength="5" maxlnegth="50" 
+                        type="text" class="validate" required>
+                    <label for="item_name">Item Name</label>
                 </div>
+            </div>
+            <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-phone prefix teal-text text-darken-2"></i>
-                    <input id="icon_telephone" type="tel" class="validate">
-                    <label for="icon_telephone">Telephone</label>
+                    <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
+                    <textarea id="item_information" name="item_information" minlength="5"
+                        maxlength="500" class="materialize-textarea validate" required></textarea>
+                    <label for="item_information">Item Information</label>
                 </div>
             </div>
         </form>
