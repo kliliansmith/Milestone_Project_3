@@ -93,10 +93,15 @@ def profile(username):
 
 @app.route("/logout")
 def logout():
-    # remove user from session cookies
-    flash("You are now logged out")
+    # remove user from session cookie
+    flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
+
+@app.route("/add_recipe")
+def add_recipe():
+    return render_template("add_recipe.html")
 
 
 if __name__ == "__main__":
