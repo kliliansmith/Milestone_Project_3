@@ -99,21 +99,22 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_item", methods=["GET", "POST"])
-def add_item():
+@app.route("/add_recipe", methods=["GET", "POST"])
+def add_recipe():
     if request.method == "POST":
-        item = {
+        recipe = {
             "category_name": request.form.get("category_name"),
-            "item_name": request.form.get("item_name"),
-            "item_information": request.form.get("item_information"),
+            "recipe_name": request.form.get("recipe_name"),
+            "recipe_ingredients": request.form.get("recipe_ingredients"),
+            "cooking_steps": request.form.get("cooking_steps"),
             "created_by": session["user"]
         }
-        mongo.db.recipes.insert_one(item)
-        flash("Item Added!")
+        mongo.db.recipes.insert_one(recipe)
+        flash("Recipe Added!")
         return redirect(url_for("get_recipes"))
-        
+
     categories = mongo.db.categories.find().sort("category_name", 1)
-    return render_template("add_item.html", categories=categories)
+    return render_template("add_recipe.html", categories=categories)
 
 
 if __name__ == "__main__":
