@@ -21,12 +21,18 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_recipes")
 def get_recipes():
+    """
+    This is the route for home/get recipes.
+    """
     recipes = list(mongo.db.recipes.find())
     return render_template("recipes.html", recipes=recipes)
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    """
+    This view registers blah blah....
+    """
     if request.method == "POST":
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
@@ -111,6 +117,12 @@ def add_recipe():
         }
         mongo.db.recipes.insert_one(recipe)
         flash("Recipe Added!")
+        ##TODO : if/else for type of submission
+        """
+        if submission_type = meal_plan:
+            return redirect(url_for("get_meal_plan))
+        elif ....
+        """
         return redirect(url_for("get_recipes"))
 
     categories = mongo.db.categories.find().sort("category_name", 1)
