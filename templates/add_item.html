@@ -4,7 +4,8 @@
     <h3 class="teal-text text-darken-2 text-shadow center-align">Add Keto Items</h3>
 
     <div class="row card-panel grey lighten-4">
-        <form class="col s12" method="POST" action="">
+        <form class="col s12" method="POST" action="{{ url_for('add_item') }}">
+            <!-- Category selection -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-folder-open prefix teal-text text-darken-2"></i>
@@ -17,6 +18,7 @@
                     <label for="category_name">Item Category</label>
                 </div>
             </div>
+            <!-- Item name -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-pencil-alt prefix teal-text text-darken-2"></i>
@@ -25,12 +27,21 @@
                     <label for="item_name">Item Name</label>
                 </div>
             </div>
+            <!-- Item information -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
                     <textarea id="item_information" name="item_information" minlength="5"
                         maxlength="500" class="materialize-textarea validate" required></textarea>
                     <label for="item_information">Item Information</label>
+                </div>
+            </div>
+            <!-- Submit Button -->
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button type="submit" class="btn-large teal darken-2 text-shadow">
+                        Add Item <i class="fas fa-plus square right"></i>
+                    </button> 
                 </div>
             </div>
         </form>
