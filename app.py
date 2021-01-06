@@ -28,6 +28,16 @@ def get_recipes():
     return render_template("recipes.html", recipes=recipes)
 
 
+@app.route("/")
+@app.route("/get_mealplan")
+def get_mealplan():
+    """
+    This is the route for home/get recipes.
+    """
+    mealplan = list(mongo.db.mealplan.find())
+    return render_template("mealplan.html", mealplan=mealplan)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """
@@ -152,6 +162,13 @@ def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     flash("Recipe Deleted")
     return redirect(url_for("get_recipes"))
+
+
+
+@app.route("/get_categories")
+def get_categories():
+    categories = list(mongo.db.categories.find().sort("category_name", 1))
+    return render_template("categories.html", categories=categories)
 
 
 if __name__ == "__main__":
