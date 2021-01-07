@@ -22,7 +22,7 @@ mongo = PyMongo(app)
 @app.route("/get_recipes")
 def get_recipes():
     """
-    This is the route for home/get recipes.
+    This is the route for the home page that lists the recipes.
     """
     recipes = list(mongo.db.recipes.find())
     return render_template("recipes.html", recipes=recipes)
@@ -32,16 +32,26 @@ def get_recipes():
 @app.route("/get_mealplan")
 def get_mealplan():
     """
-    This is the route for home/get recipes.
+    This is the route for the meal plan page .
     """
     mealplan = list(mongo.db.mealplan.find())
     return render_template("mealplan.html", mealplan=mealplan)
 
 
+@app.route("/")
+@app.route("/get_cookingtools")
+def get_cookingtools():
+    """
+    This is the route for the cooking tools page .
+    """
+    cookingtools = list(mongo.db.cookingtools.find())
+    return render_template("cookingtools.html", cookingtools=cookingtools)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """
-    This view registers blah blah....
+    This is the route for allowing a user to register
     """
     if request.method == "POST":
         # check if username already exists in db
@@ -68,6 +78,9 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """
+    This is the route for users to be able to log in to the site
+    """
     if request.method == "POST":
         # check if username exists in db
         existing_user = mongo.db.users.find_one(
@@ -139,6 +152,31 @@ def add_recipe():
     return render_template("add_recipe.html", categories=categories)
 
 
+@app.route("/add_mealplan", methods=["GET", "POST"])
+def add_mealplan():
+    if request.method == "POST":
+        mealplan = {
+            "category_name": request.form.get("category_name"),
+            "mealplan_name": request.form.get("mealplan_name"),
+            "mealplan_breakfast": request.form.get("mealplan_breakfast"),
+            "mealplan_lunch": request.form.get("mealplan_lunch"),
+            "mealplan_dinner": request.form.get("mealplan_dinner"),
+            "created_by": session["user"]
+        }
+        mongo.db.mealplan.insert_one(mealplan)
+        flash("Mealplan Added!")
+        ##TODO : if/else for type of submission
+        """
+        if submission_type = mealplan:
+            return redirect(url_for("get_mealplan))
+        elif ....
+        """
+        return redirect(url_for("get_recipes"))
+
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("add_recipe.html", categories=categories)
+
+
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     if request.method == "POST":
@@ -153,8 +191,7 @@ def edit_recipe(recipe_id):
         flash("Recipe Updated")
 
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    categories = mongo.db.categories.find().sort("category_name", 1)
-    return render_template("edit_recipe.html", recipe=recipe, categories=categories)
+    return render_template("edit_recipe.html", recipe=recipe)
 
 
 @app.route("/delete_recipe/<recipe_id>")
@@ -162,13 +199,6 @@ def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     flash("Recipe Deleted")
     return redirect(url_for("get_recipes"))
-
-
-
-@app.route("/get_categories")
-def get_categories():
-    categories = list(mongo.db.categories.find().sort("category_name", 1))
-    return render_template("categories.html", categories=categories)
 
 
 if __name__ == "__main__":

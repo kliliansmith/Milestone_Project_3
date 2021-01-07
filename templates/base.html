@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     {% block styles %}
     {% endblock %}
-    <title>Keto Recipes</title>
+    <title class="main">Keto Recipes</title>
 </head>
 <body>
 
@@ -25,12 +25,9 @@
                 <!-- if user is logged in they can then view all links -->
                 {% if session.user %}
                     <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                    <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
+                    <li><a href="{{ url_for('add_recipe') }}">Add Keto Category</a></li>
                     <li><a href="{{ url_for('get_mealplan') }}">Meal Plans</a></li>
-                    <!-- only displayed to the admin -->
-                    {% if session.user|lower == "admin"|lower %}
-                        <li><a href="{{ url_for('get_categories') }}">Keto Categories</a></li>
-                    {% endif %}
+                    <li><a href="{{ url_for('get_cookingtools') }}">Cooking Tools</a></li>
                     <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                 {% else %}
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
@@ -46,11 +43,9 @@
             <li><a href="{{ url_for('get_recipes') }}">Home</a></li>
             {% if session.user %}
                 <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
+                <li><a href="{{ url_for('add_recipe') }}">Add Keto Category</a></li>
                 <li><a href="{{ url_for('get_mealplan') }}">Meal Plans</a></li>
-                    {% if session.user|lower == "admin"|lower %}
-                        <li><a href="{{ url_for('get_categories') }}">Keto Categories</a></li>
-                    {% endif %}
+                <li><a href="{{ url_for('get_cookingtools') }}">Cooking Tools</a></li>
                 <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}
                 <li><a href="{{ url_for('login') }}">Log In</a></li>
