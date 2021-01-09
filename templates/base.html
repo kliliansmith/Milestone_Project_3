@@ -21,11 +21,11 @@
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
 				<ul class="right hide-on-med-and-down">
                 <!-- all users will always see the home link -->
-                <li><a href="{{ url_for('get_recipes') }}">Home</a></li>
+                <li><a href="{{ url_for('get_recipes') }}">Recipes</a></li>
                 <!-- if user is logged in they can then view all links -->
                 {% if session.user %}
                     <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                    <li><a href="{{ url_for('add_recipe') }}">Add Keto Category</a></li>
+                    <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
                     <li><a href="{{ url_for('get_mealplan') }}">Meal Plans</a></li>
                     <li><a href="{{ url_for('get_cookingtools') }}">Cooking Tools</a></li>
                     <li><a href="{{ url_for('logout') }}">Log Out</a></li>
@@ -40,10 +40,10 @@
         <!-- mobile side navbar -->
         <ul class="sidenav" id="mobile-demo">
             <li><h4 class="center-align teal-text text-darken 3">Keto Recipes</h4></li>
-            <li><a href="{{ url_for('get_recipes') }}">Home</a></li>
+            <li><a href="{{ url_for('get_recipes') }}">Recipes</a></li>
             {% if session.user %}
                 <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                <li><a href="{{ url_for('add_recipe') }}">Add Keto Category</a></li>
+                <li><a href="{{ url_for('add_recipe') }}">Add Recipes</a></li>
                 <li><a href="{{ url_for('get_mealplan') }}">Meal Plans</a></li>
                 <li><a href="{{ url_for('get_cookingtools') }}">Cooking Tools</a></li>
                 <li><a href="{{ url_for('logout') }}">Log Out</a></li>

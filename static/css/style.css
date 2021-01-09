@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400&display=swap&family=Nunito:wght@200&display=swap');
+
+nav {
+    font-family: "Cinzel", sans-serif;
+    font-weight: 700;
+}
+
 .text-shadow {
     text-shadow: 2px 2px 2px rgb(0, 0, 0, 0.5)
 }

@@ -135,17 +135,11 @@ def add_recipe():
             "category_name": request.form.get("category_name"),
             "recipe_name": request.form.get("recipe_name"),
             "recipe_ingredients": request.form.get("recipe_ingredients"),
-            "cooking_steps": request.form.get("cooking_steps"),
+            "cooking_steps": request.form.getlist("cooking_steps[0,10]"),
             "created_by": session["user"]
         }
         mongo.db.recipes.insert_one(recipe)
         flash("Recipe Added!")
-        ##TODO : if/else for type of submission
-        """
-        if submission_type = meal_plan:
-            return redirect(url_for("get_meal_plan))
-        elif ....
-        """
         return redirect(url_for("get_recipes"))
 
     categories = mongo.db.categories.find().sort("category_name", 1)
@@ -161,7 +155,6 @@ def add_mealplan():
             "mealplan_breakfast": request.form.get("mealplan_breakfast"),
             "mealplan_lunch": request.form.get("mealplan_lunch"),
             "mealplan_dinner": request.form.get("mealplan_dinner"),
-            "created_by": session["user"]
         }
         mongo.db.mealplan.insert_one(mealplan)
         flash("Mealplan Added!")

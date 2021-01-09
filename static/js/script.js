@@ -9,7 +9,7 @@ $(document).ready(function () {
         /* set 2 new variables to set css style to match materialize validation */
         let classValid = { "border-bottom": "1px solid #4caf50", "box-shadow": "0 1px 0 0 #4caf50" };
         let classInvalid = { "border-bottom": "1px solid #f44336", "box-shadow": "0 1px 0 0 #f44336" };
-        /* if a select element has property of required, then un-hide it with no width or height */
+        /* if a select element has property of required, unhide it with no width or height */
         if ($("select.validate").prop("required")) {
             $("select.validate").css({ "display": "block", "height": "0", "padding": "0", "width": "0", "position": "absolute" });
         }
