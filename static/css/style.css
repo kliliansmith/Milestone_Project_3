@@ -1,8 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400&display=swap&family=Nunito:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Permanent+Marker&display=swap');
 
-nav {
-    font-family: "Cinzel", sans-serif;
+.font-text {
+    font-family: "Permanent Marker", sans-serif;
+}
+
+.bodytext-font {
+    font-family: "Amatic SC", sans-serif;
     font-weight: 700;
+    font-size: 25px; 
+    color: rgb(0, 0, 0)
+}
+
+.heading-font {
+    font-family: "Permanent Marker", sans-serif;
+    font-size: 25px; 
+    color: rgb(0, 0, 0)
 }
 
 .text-shadow {

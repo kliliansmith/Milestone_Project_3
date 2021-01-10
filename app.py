@@ -32,20 +32,10 @@ def get_recipes():
 @app.route("/get_mealplan")
 def get_mealplan():
     """
-    This is the route for the meal plan page .
+    This is the route for the list of meal plans that have been added to the page .
     """
     mealplan = list(mongo.db.mealplan.find())
     return render_template("mealplan.html", mealplan=mealplan)
-
-
-@app.route("/")
-@app.route("/get_cookingtools")
-def get_cookingtools():
-    """
-    This is the route for the cooking tools page .
-    """
-    cookingtools = list(mongo.db.cookingtools.find())
-    return render_template("cookingtools.html", cookingtools=cookingtools)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -135,7 +125,7 @@ def add_recipe():
             "category_name": request.form.get("category_name"),
             "recipe_name": request.form.get("recipe_name"),
             "recipe_ingredients": request.form.get("recipe_ingredients"),
-            "cooking_steps": request.form.getlist("cooking_steps[0,10]"),
+            "cooking_steps": request.form.get("cooking_steps"),
             "created_by": session["user"]
         }
         mongo.db.recipes.insert_one(recipe)
@@ -155,19 +145,14 @@ def add_mealplan():
             "mealplan_breakfast": request.form.get("mealplan_breakfast"),
             "mealplan_lunch": request.form.get("mealplan_lunch"),
             "mealplan_dinner": request.form.get("mealplan_dinner"),
+            "added_by": session["user"]
         }
         mongo.db.mealplan.insert_one(mealplan)
         flash("Mealplan Added!")
-        ##TODO : if/else for type of submission
-        """
-        if submission_type = mealplan:
-            return redirect(url_for("get_mealplan))
-        elif ....
-        """
-        return redirect(url_for("get_recipes"))
+        return redirect(url_for("get_mealplan"))
 
     categories = mongo.db.categories.find().sort("category_name", 1)
-    return render_template("add_recipe.html", categories=categories)
+    return render_template("add_mealplan.html", categories=categories)
 
 
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
@@ -192,6 +177,13 @@ def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     flash("Recipe Deleted")
     return redirect(url_for("get_recipes"))
+
+
+@app.route("/delete_mealplan/<mealplan_id>")
+def delete_mealplan(mealplan_id):
+    mongo.db.mealplan.remove({"_id": ObjectId(mealplan_id)})
+    flash("Mealplan Deleted")
+    return redirect(url_for("get_mealplan"))
 
 
 if __name__ == "__main__":

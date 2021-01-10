@@ -1,17 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h4 class="teal-text text-darken-2 text-shadow center-align">All Keto Meal Plans</h4>
+    <h4 class="font-text teal-text text-darken-2 text-shadow center-align">All Keto Meal Plans</h4>
 
     <ul class="collapsible">
         {% for mealplan in mealplan %}
-        <li>
+        <li class="bodytext-font">
             <div class="collapsible-header white-text teal darken-3 text-shadow">
                 <div class="col s3">
                     <i class="fas fa-caret-down"></i>
                     {% if session.user|lower == mealplan.created_by|lower %}
                     <a href="{{ url_for('delete_mealplan', mealplan_id=mealplan._id) }}" class="btn-small red accent-4">Delete</a>
-                    <a href="{{ url_for('edit_mealplan', mealplan_id=mealplan._id) }}" class="btn-small teal accent-4">Edit</a>
                     {% endif %}
                 </div>
                 <div class="col s9">
@@ -23,13 +22,13 @@
                 </div>
             </div>
             <div class="collapsible-body">
-                <h6>{{ mealplan.mealplan_name }}</h6>
-                <h6>Breakfast</h6>
+                <h6 class="heading-font">Breakfast</h6>
                 <p>{{ mealplan.mealpan_breakfast}}</p>
-                <h6>Lunch</h6>
+                <h6 class="heading-font">Lunch</h6>
                 <p>{{ mealplan.mealplan_lunch }}</p>
-                <h6>Dinner</h6>
+                <h6 class="heading-font">Dinner</h6>
                 <p>{{ mealplan.mealplan_dinner }}</p>
+                <p><em>by: {{ mealplan.added_by }}</em></p>
             </div>
         </li>
         {% endfor %}

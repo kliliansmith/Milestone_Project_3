@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="teal-text text-darken-2 text-shadow center-align">Add Recipe</h3>
+    <h3 class="font-text teal-text text-darken-2 text-shadow center-align">Add Recipe</h3>
 
-    <div class="row card-panel grey lighten-4">
+    <div class="row card-panel grey lighten-4 bodytext-font">
         <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}">
             <!-- Item name -->
             <div class="row">
@@ -19,7 +19,7 @@
                 <div class="input-field col s12">
                     <i class="fas fa-align-left prefix teal-text text-darken-2"></i>
                     <textarea id="recipe_ingredients" name="recipe_ingredients" minlength="5"
-                        maxlength="500" class="materialize-textarea validate" required></textarea>
+                        maxlength="1500" class="materialize-textarea validate" required></textarea>
                     <label for="recipe_ingredients">Recipe Ingredients</label>
                 </div>
             </div>
