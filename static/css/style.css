@@ -1,18 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Yusei+Magic&display=swap');
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+main {
+    flex: 1 0 auto;
+  }
 
 .font-text {
-    font-family: "Permanent Marker", sans-serif;
+    font-family: "Yusei Magic", sans-serif;
 }
 
 .bodytext-font {
-    font-family: "Amatic SC", sans-serif;
-    font-weight: 700;
+    font-family: "Cormorant Garamond", sans-serif;
     font-size: 25px; 
     color: rgb(0, 0, 0)
 }
 
 .heading-font {
-    font-family: "Permanent Marker", sans-serif;
+    font-family: "Yusei Magi", sans-serif;
     font-size: 25px; 
     color: rgb(0, 0, 0)
 }

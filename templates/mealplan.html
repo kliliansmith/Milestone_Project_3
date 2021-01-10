@@ -9,7 +9,7 @@
             <div class="collapsible-header white-text teal darken-3 text-shadow">
                 <div class="col s3">
                     <i class="fas fa-caret-down"></i>
-                    {% if session.user|lower == mealplan.created_by|lower %}
+                    {% if session.user|lower == mealplan.added_by|lower %}
                     <a href="{{ url_for('delete_mealplan', mealplan_id=mealplan._id) }}" class="btn-small red accent-4">Delete</a>
                     {% endif %}
                 </div>
@@ -23,7 +23,7 @@
             </div>
             <div class="collapsible-body">
                 <h6 class="heading-font">Breakfast</h6>
-                <p>{{ mealplan.mealpan_breakfast}}</p>
+                <p>{{ mealplan.mealplan_breakfast}}</p>
                 <h6 class="heading-font">Lunch</h6>
                 <p>{{ mealplan.mealplan_lunch }}</p>
                 <h6 class="heading-font">Dinner</h6>
