@@ -8,6 +8,7 @@
         <li class="bodytext-font">
             <div class="collapsible-header white-text teal darken-3 text-shadow">
                 <div class="col s3">
+                    <!-- allows the person who added the mealplan to delete it -->
                     <i class="fas fa-caret-down"></i>
                     {% if session.user|lower == mealplan.added_by|lower %}
                     <a href="{{ url_for('delete_mealplan', mealplan_id=mealplan._id) }}" class="btn-small red accent-4">Delete</a>
@@ -21,6 +22,7 @@
                     {% endif %}
                 </div>
             </div>
+            <!-- displays the added mealplan within the drop down menu on the page -->
             <div class="collapsible-body">
                 <h6 class="heading-font">Breakfast</h6>
                 <p>{{ mealplan.mealplan_breakfast}}</p>
