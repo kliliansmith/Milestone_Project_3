@@ -37,7 +37,8 @@ def get_recipes():
 @app.route("/get_mealplan")
 def get_mealplan():
     """
-    This is the route for the list of meal plans that have been added to the page .
+    This is the route for the list of meal 
+    plans that have been added to the page .
     """
     mealplan = list(mongo.db.mealplan.find())
     return render_template("mealplan.html", mealplan=mealplan)
